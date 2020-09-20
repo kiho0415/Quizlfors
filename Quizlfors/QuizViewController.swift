@@ -29,6 +29,7 @@ class QuizViewController: UIViewController {
         
         quizArray.shuffle()
         choicequiz()
+      
 
         // Do any additional setup after loading the view.
     }
@@ -48,17 +49,11 @@ class QuizViewController: UIViewController {
         performSegue(withIdentifier: "toResultView", sender: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toResultView"{
-            let resultViewController = segue.destination as! ResultViewController
-            resultViewController.seikaisuu = self.seikaisuu
-        }
-    }
-    
     @IBAction func choiceAnswer(sender:UIButton){
         let tmpArray = quizArray[0] as! [Any]
         if tmpArray[4] as! Int == sender.tag{//クイズの正解番号とTagを比べる
             seikaisuu = seikaisuu + 1
+        
         }
         //解いた問題を配列から取り除く
         quizArray.remove(at: 0)
@@ -67,6 +62,15 @@ class QuizViewController: UIViewController {
             performSegueToResult()
         }else{
             choicequiz()
+        }
+    }
+    
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toResultView"{
+            let resultViewController = segue.destination as! ResultViewController
+            resultViewController.seikaisuu = self.seikaisuu
         }
     }
 

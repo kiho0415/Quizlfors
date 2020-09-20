@@ -17,7 +17,7 @@ class ResultViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        kekkalabel.text = String(seikaisuu)
+        kekkalabel.text = String("\(seikaisuu)門正解！")
         
     }
     
